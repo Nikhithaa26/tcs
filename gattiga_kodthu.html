@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gattiga Kodthu 🔥</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Teko:wght@400;600;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --fire: #ff3d00;
+    --gold: #ffc107;
+    --white: #ffffff;
+    --bg: #0a0a0a;
+    --bg2: #111111;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Rajdhani', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    position: fixed;
+    width: 20px; height: 20px;
+    border: 2px solid var(--fire);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s, background 0.1s;
+    transform: translate(-50%, -50%);
+  }
+  .cursor.active { background: var(--fire); transform: translate(-50%,-50%) scale(1.5); }
+
+  /* Background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,61,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,61,0,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Particles */
+  #particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--fire);
+    animation: rise linear infinite;
+    opacity: 0;
+  }
+  @keyframes rise {
+    0% { opacity: 0; transform: translateY(0) scale(1); }
+    20% { opacity: 0.8; }
+    80% { opacity: 0.4; }
+    100% { opacity: 0; transform: translateY(-100vh) scale(0.3); }
+  }
+
+  /* Main layout */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  /* Top badge */
+  .badge {
+    display: inline-block;
+    background: var(--fire);
+    color: #fff;
+    font-family: 'Teko', sans-serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+    padding: 6px 20px;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    animation: pulse-badge 2s ease-in-out infinite;
+    clip-path: polygon(8px 0%, calc(100% - 8px) 0%, 100% 50%, calc(100% - 8px) 100%, 8px 100%, 0% 50%);
+  }
+  @keyframes pulse-badge {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,61,0,0.7); }
+    50% { box-shadow: 0 0 20px 10px rgba(255,61,0,0.3); }
+  }
+
+  /* Main heading */
+  .you-can {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(80px, 18vw, 220px);
+    line-height: 0.85;
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #fff 0%, #ffccbc 40%, #ff3d00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: flicker 4s ease-in-out infinite;
+    position: relative;
+  }
+  .you-can::after {
+    content: 'YOU CAN DO IT!';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(255,61,0,0.15) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: blur(30px);
+    z-index: -1;
+  }
+  @keyframes flicker {
+    0%, 95%, 100% { opacity: 1; }
+    96% { opacity: 0.85; }
+    97% { opacity: 1; }
+    98% { opacity: 0.9; }
+  }
+
+  /* Telugu line */
+  .telugu-line {
+    margin-top: 20px;
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(28px, 6vw, 72px);
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    animation: slide-in-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+    text-shadow: 0 0 40px rgba(255, 193, 7, 0.5);
+  }
+  @keyframes slide-in-left {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .life-settu {
+    margin-top: 10px;
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(32px, 7vw, 88px);
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    animation: slide-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+    background: linear-gradient(90deg, var(--fire), var(--gold), var(--fire));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: slide-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both, shimmer 3s linear 1.3s infinite;
+  }
+  @keyframes slide-in-right {
+    from { opacity: 0; transform: translateX(60px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Divider */
+  .divider {
+    width: 200px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--fire), transparent);
+    margin: 30px auto;
+    animation: expand 1s ease-out 0.8s both;
+  }
+  @keyframes expand {
+    from { width: 0; opacity: 0; }
+    to { width: 200px; opacity: 1; }
+  }
+
+  /* Fire emoji row */
+  .fire-row {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    font-size: 36px;
+    margin: 20px 0;
+    animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1s both;
+  }
+  .fire-row span {
+    display: inline-block;
+    animation: fire-shake 1.5s ease-in-out infinite;
+  }
+  .fire-row span:nth-child(2) { animation-delay: 0.2s; }
+  .fire-row span:nth-child(3) { animation-delay: 0.4s; }
+  .fire-row span:nth-child(4) { animation-delay: 0.6s; }
+  .fire-row span:nth-child(5) { animation-delay: 0.8s; }
+  @keyframes fire-shake {
+    0%, 100% { transform: translateY(0) rotate(-3deg) scale(1); }
+    50% { transform: translateY(-8px) rotate(3deg) scale(1.1); }
+  }
+  @keyframes pop-in {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* Sub text */
+  .sub-text {
+    margin-top: 10px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fade-up 0.8s ease 1.2s both;
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 0.5; transform: translateY(0); }
+  }
+
+  /* Big hype button */
+  .hype-btn {
+    margin-top: 50px;
+    background: none;
+    border: 2px solid var(--fire);
+    color: var(--fire);
+    font-family: 'Teko', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    padding: 14px 48px;
+    text-transform: uppercase;
+    cursor: none;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s;
+    animation: fade-up 0.8s ease 1.5s both;
+    clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0% 50%);
+  }
+  .hype-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--fire);
+    transform: translateX(-101%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hype-btn:hover::before { transform: translateX(0); }
+  .hype-btn:hover { color: #fff; }
+  .hype-btn span { position: relative; z-index: 1; }
+
+  /* Hype message */
+  .hype-msg {
+    margin-top: 20px;
+    font-family: 'Teko', sans-serif;
+    font-size: 26px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    min-height: 40px;
+    animation: fade-up 0.8s ease 1.7s both;
+    text-shadow: 0 0 20px rgba(255,193,7,0.6);
+  }
+
+  /* Bottom bar */
+  .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--fire), var(--gold), var(--fire), transparent);
+    background-size: 200% 100%;
+    animation: scan 2s linear infinite;
+  }
+  @keyframes scan {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Corner decorations */
+  .corner {
+    position: fixed;
+    width: 60px; height: 60px;
+    border-color: var(--fire);
+    border-style: solid;
+    opacity: 0.4;
+  }
+  .corner-tl { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
+  .corner-tr { top: 20px; right: 20px; border-width: 2px 2px 0 0; }
+  .corner-bl { bottom: 20px; left: 20px; border-width: 0 0 2px 2px; }
+  .corner-br { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }
+
+  /* Shake animation on click */
+  @keyframes mega-shake {
+    0% { transform: translateX(0) rotate(0); }
+    10% { transform: translateX(-8px) rotate(-1deg); }
+    20% { transform: translateX(8px) rotate(1deg); }
+    30% { transform: translateX(-6px) rotate(-0.5deg); }
+    40% { transform: translateX(6px) rotate(0.5deg); }
+    50% { transform: translateX(-4px); }
+    60% { transform: translateX(4px); }
+    70% { transform: translateX(-2px); }
+    80% { transform: translateX(2px); }
+    100% { transform: translateX(0) rotate(0); }
+  }
+  .shake { animation: mega-shake 0.5s ease both !important; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div id="particles"></div>
+
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+
+<div class="hero" id="hero">
+  <div class="badge">🚀 Rakeshooooooooooo 🚀</div>
+
+  <div class="you-can" id="mainTitle">YOU CAN DO IT!</div>
+
+  <div class="divider"></div>
+
+  <div class="telugu-line">Gattiga Kodthunnammm!!!</div>
+  <div class="life-settu">Life Settuuuuuuu 🔥</div>
+
+  <div class="fire-row">
+    <span>🔥</span><span>💪</span><span>⚡</span><span>💥</span><span>🏆</span>
+  </div>
+
+  <div class="sub-text">Kismat ki sabse badi aadat kya hai? Woh waqt aane par badalti hai. Hamara bhi waqt aayega.</div>
+
+  <button class="hype-btn" id="hypeBtn" onclick="generateHype()">
+    <span>Give Me More Hype!</span>
+  </button>
+
+
+</div>
+  <div id="hypeMsg" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(10,10,10,0.95); border:2px solid #ffc107; padding:24px 36px; font-family:'Teko',sans-serif; font-size:clamp(18px,3vw,28px); color:#ffc107; letter-spacing:2px; text-align:center; max-width:80vw; z-index:9998; text-shadow:0 0 20px rgba(255,193,7,0.5); clip-path:polygon(12px 0%,calc(100% - 12px) 0%,100% 50%,calc(100% - 12px) 100%,12px 100%,0% 50%);"></div>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mousedown', () => cursor.classList.add('active'));
+  document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+
+  // Particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 40; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.bottom = '-10px';
+    p.style.width = p.style.height = (Math.random() * 6 + 2) + 'px';
+    p.style.animationDuration = (Math.random() * 8 + 4) + 's';
+    p.style.animationDelay = (Math.random() * 6) + 's';
+    const colors = ['#ff3d00','#ffc107','#ff6d00','#fff176'];
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    container.appendChild(p);
+  }
+
+  function generateHype() {
+    const msg = document.getElementById('hypeMsg');
+    const title = document.getElementById('mainTitle');
+    msg.textContent = "Kismat ki sabse badi aadat kya hai? Woh waqt aane par badalti hai. Hamara bhi waqt aayega.";
+    msg.style.display = 'block';
+    clearTimeout(window._hypeTimer);
+    window._hypeTimer = setTimeout(() => { msg.style.display = 'none'; }, 3000);
+    title.classList.remove('shake');
+    void title.offsetWidth;
+    title.classList.add('shake');
+    burstParticles();
+  }
+
+  function burstParticles() {
+    for (let i = 0; i < 15; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.bottom = Math.random() * 50 + 'vh';
+      p.style.width = p.style.height = (Math.random() * 8 + 4) + 'px';
+      p.style.animationDuration = (Math.random() * 2 + 1) + 's';
+      p.style.animationDelay = '0s';
+      const colors = ['#ff3d00','#ffc107','#fff'];
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      container.appendChild(p);
+      setTimeout(() => p.remove(), 3000);
+    }
+  }
+</script>
+</body>
+</html>
